@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="JSF Application Test:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/JSF_Application_Test_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="JSF Application Test/ejb/EJB" />
+      <element id="module-output" name="JSF Application Test" />
+    </root>
+  </artifact>
+</component>
