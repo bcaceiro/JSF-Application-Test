@@ -14,10 +14,23 @@ public class Connect {
         try {
             DBConnection connection = new DBConnection();
 
-            System.out.println(connection.getConnection().getMetaData().getSchemas());
+            System.out.println(connection.getConnection());
 
-            PreparedStatement pst = null;
-            ResultSet rs = null;
+            PreparedStatement statement = null;
+            ResultSet result = null;
+
+
+
+
+            statement = connection.getConnection().prepareStatement("SELECT * FROM Teste");
+            result = statement.executeQuery();
+
+
+            while(result.next()) {
+                System.out.println(result.getInt("ID"));
+                System.out.println(result.getString("NAME"));
+            }
+
 
             
 
