@@ -10,7 +10,6 @@ public class User {
 
     private long userID;
     private String name;
-
     
     public long getUserID() {
         return userID;
