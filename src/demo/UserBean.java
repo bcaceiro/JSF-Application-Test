@@ -3,6 +3,7 @@ package demo;
 import database.DBConnection;
 import model.User;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.Context;
@@ -20,8 +21,25 @@ import java.util.List;
 public class UserBean implements Serializable {
 
     private Connection conn;
-    int userID;
-    String name;
+
+
+
+
+    private User novo;
+
+    @PostConstruct
+    public void init() {
+        novo = new User();
+    }
+
+    public User getNovo() {
+        return novo;
+    }
+
+    public void setNovo(User novo) {
+        this.novo = novo;
+    }
+
 
 
     public UserBean() {
@@ -71,21 +89,44 @@ public class UserBean implements Serializable {
     }
 
 
-    public void addUser(int userID, String name) throws SQLException {
+    public void add() throws SQLException {
 
         if(conn ==null)
             throw new SQLException("Can't get database connection");
 
-        System.out.println("A inserir");
+
+        String insertTableSQL = "INSERT INTO TEESTES"
+                + "(ID, NAME) VALUES"
+                + "(?,?)";
+
+        PreparedStatement preparedStatement = conn.prepareStatement(insertTableSQL);
+        preparedStatement.setInt(1, (int)this.novo.getUserID());
+        preparedStatement.setString(2, this.novo.getName());
+
+        // execute insert SQL statement
+        preparedStatement .executeUpdate();
 
 
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO TEESTES VALUES a, b");
+    }
+
+    public void del() throws SQLException {
 
 
-        ps.executeUpdate();
+        String delete = "DELETE FROM TEESTES WHERE id=?";
+        PreparedStatement preparedStatement = conn.prepareStatement(delete);
+        preparedStatement.setInt(1, (int) this.novo.getUserID());
+
+        preparedStatement .executeUpdate();
+    }
+
+    public void update() throws SQLException {
 
 
+        String delete = "UPDATE TEESTES SET NAME=? WHERE ID=?";
+        PreparedStatement preparedStatement = conn.prepareStatement(delete);
+        preparedStatement.setString(1, this.novo.getName());
+        preparedStatement.setInt(2, (int) this.novo.getUserID());
 
-
+        preparedStatement .executeUpdate();
     }
 }

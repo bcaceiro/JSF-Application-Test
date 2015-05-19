@@ -4,7 +4,9 @@
        <html xmlns="http://www.w3.org/1999/xhtml"
              xmlns:h="http://xmlns.jcp.org/jsf/html"
              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-             xmlns:f="http://xmlns.jcp.org/jsf/core">
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:p="http://primefaces.org/ui"
+        >
 
     <h:head>
         <title>JSF Application Test</title>
@@ -12,46 +14,48 @@
 
     <h:body>
 
-        <p>#{user.getUserList().size()}</p>
-
-
-
-        <h:dataTable value="#{user.getUserList()}" var="c"
-                     styleClass="order-table"
-                     headerClass="order-table-header"
-                     rowClasses="order-table-odd-row,order-table-even-row"
-                >
-
-            <h:column>
+        <h:form id="jsfexample">
+            <p:panelGrid columns="2">
                 <f:facet name="header">
-                    User ID
+                    Painel de Controlo
                 </f:facet>
-                #{c.userID}
-            </h:column>
+                <h:outputLabel for="key" value="Enter User ID" />
+                <p:inputText id="key" value="#{user.novo.userID}" />
 
-            <h:column>
-                <f:facet name="header">
-                    Name
-                </f:facet>
-                #{c.name}
-            </h:column>
+                <h:outputLabel for="value" value="Enter Name" />
+                <p:inputText id="value" value="#{user.novo.name}" />
 
+                <p:commandButton action="#{user.add}" update="mydata"
+                                 value="Add" icon="ui-icon-add" style="margin:0" />
+                <p:commandButton action="#{user.update}" update="mydata"
+                                 value="Update" icon="ui-icon-check" style="margin:0" />
+                <p:commandButton action="#{user.del}" update="mydata"
+                                 value="Delete" icon="ui-icon-cancel" style="margin:0" />
 
-        </h:dataTable>
-
-        <tr>
-            <td><h:outputText value="Enter userId : "/></td>
-            <td><h:inputText binding="#{userID}"/></td>
-        </tr>
+                <h:messages />
 
 
+            </p:panelGrid>
 
-        <tr>
-            <td><h:outputText value="Enter Name : " /></td>
-            <td><h:inputText binding="#{name}" /></td>
-        </tr>
+            <p:dataTable value="#{user.getUserList()}" var="c" id="mydata">
+                <p:column>
+                    <f:facet name="header">User ID</f:facet>
+                    <h:outputText value="#{c.userID}" />
+                </p:column>
 
-        <h:commandButton value="Test" action="#{user.addUser(userID, name)}" />
+
+
+                <p:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{c.name}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+
+
+
+
 
     </h:body>
 </html>
