@@ -29,6 +29,6 @@
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0 - JSF" level="application_server_libraries" />
     <orderEntry type="library" name="PrimeFaces-5.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.0.0" level="application_server_libraries" />
-    <orderEntry type="library" name="ojdbc6-11.2.0.4" level="project" />
+    <orderEntry type="library" exported="" name="ojdbc6-11.2.0.4" level="application" />
   </component>
 </module>

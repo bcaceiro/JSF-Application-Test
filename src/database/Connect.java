@@ -14,8 +14,6 @@ public class Connect {
         try {
             DBConnection connection = new DBConnection();
 
-            System.out.println(connection.getConnection());
-
             PreparedStatement statement = null;
             ResultSet result = null;
 
@@ -29,14 +27,16 @@ public class Connect {
                 System.out.println(result.getInt("ID"));
                 System.out.println(result.getString("NAME"));
             }
-
-
             
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
 }
 
 

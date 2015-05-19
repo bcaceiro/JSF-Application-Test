@@ -13,6 +13,13 @@ public class DBConnection {
 
     public DBConnection () throws SQLException {
 
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
         this.connection = DriverManager.getConnection("jdbc:oracle:thin:@sificapdb.ipn.pt:1521:xe", "bruno",
                 "sificap2015");
     }

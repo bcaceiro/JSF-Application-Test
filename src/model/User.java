@@ -5,8 +5,6 @@ import javax.faces.bean.RequestScoped;
 
 
 
-@ManagedBean(name="user")
-@RequestScoped
 public class User {
 
     private long userID;

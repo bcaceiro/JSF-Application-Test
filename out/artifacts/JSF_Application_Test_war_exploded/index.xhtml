@@ -7,11 +7,52 @@
              xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
-        <title>Facelets Hello World</title>
+        <title>JSF Application Test</title>
     </h:head>
 
     <h:body>
-        #{hello.world}
+
+        <p>#{user.getUserList().size()}</p>
+
+
+
+        <h:dataTable value="#{user.getUserList()}" var="c"
+                     styleClass="order-table"
+                     headerClass="order-table-header"
+                     rowClasses="order-table-odd-row,order-table-even-row"
+                >
+
+            <h:column>
+                <f:facet name="header">
+                    User ID
+                </f:facet>
+                #{c.userID}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    Name
+                </f:facet>
+                #{c.name}
+            </h:column>
+
+
+        </h:dataTable>
+
+        <tr>
+            <td><h:outputText value="Enter userId : "/></td>
+            <td><h:inputText binding="#{userID}"/></td>
+        </tr>
+
+
+
+        <tr>
+            <td><h:outputText value="Enter Name : " /></td>
+            <td><h:inputText binding="#{name}" /></td>
+        </tr>
+
+        <h:commandButton value="Test" action="#{user.addUser(userID, name)}" />
+
     </h:body>
 </html>
 
